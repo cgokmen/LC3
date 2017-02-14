@@ -8,5 +8,5 @@
 
 import Foundation
 
-print("Hello, World!")
+var computer : LC3 = LC3()
 
