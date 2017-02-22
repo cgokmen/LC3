@@ -8,6 +8,7 @@ import Foundation
 class ObjLoader {
     static func loadFromURL(url: URL, memory: Memory) throws {
         let data = try Data(contentsOf: url, options: .alwaysMapped)
+        print("Loading obj into memory:")
 
         var currentIndex = 0
         while (currentIndex < data.count) {
@@ -31,6 +32,8 @@ class ObjLoader {
                 location += 1
             }
         }
+
+        print("Load complete.\n")
     }
 }
 
