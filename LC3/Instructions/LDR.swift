@@ -12,6 +12,17 @@ class LDRInstruction: Instruction {
     // Update the CC
 
     override class func run(computer: LC3, instruction: UInt16) -> Void {
-        print("LOL2")
+        let destinationRegister = UInt8((instruction >> 9) & 0x7) // 3 bits
+        let baseRegister = UInt8((instruction >> 6) & 0x7) // 3 bits
+        let registerOffset = Util.signExtend(instruction & 0x3F, fromBit: 5) // 6 bits
+        let sourceAddress = UInt16(bitPattern: Int16(bitPattern: computer.getRegister(address: baseRegister).getValue()) &+ registerOffset)
+
+        let value = computer.memory.getValue(atAddress: sourceAddress)
+        let register = computer.getRegister(address: destinationRegister)
+
+        register.setValue(value)
+
+        let cc = ConditionCodeEnum(data: value)
+        computer.conditionCode = cc
     }
 }

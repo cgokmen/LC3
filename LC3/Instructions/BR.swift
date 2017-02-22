@@ -10,6 +10,16 @@ import Foundation
 
 class BRInstruction: Instruction {
     override class func run(computer: LC3, instruction: UInt16) -> Void {
-        print("LOL2")
+        let ccMask = UInt8((instruction >> 9) & 0x7) // 3 bits
+        let cc : ConditionCodeEnum = computer.conditionCode
+
+        //print("Running BR, CC is " + String(describing: cc))
+
+        if cc.rawValue & ccMask != 0 {
+            let pcOffset = Util.signExtend(instruction & 0x1FF, fromBit: 8) // 9 bits
+            let destinationAddress = UInt16(bitPattern: Int16(bitPattern: computer.programCounter.getValue()) &+ pcOffset)
+
+            computer.programCounter.setValue(destinationAddress)
+        }
     }
 }

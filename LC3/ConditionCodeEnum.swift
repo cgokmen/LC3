@@ -14,16 +14,14 @@ enum ConditionCodeEnum: UInt8 {
     case N = 0x4
     
     init(data: UInt16) {
-        var uData = Int16(bitPattern: data)
+        let uData = Int16(bitPattern: data)
         
         if (uData > 0) {
             self = ConditionCodeEnum.P
-        }
-        
-        if (uData < 0) {
+        } else if (uData < 0) {
             self = ConditionCodeEnum.N
+        } else {
+            self = ConditionCodeEnum.Z
         }
-        
-        self = ConditionCodeEnum.Z
     }
 }

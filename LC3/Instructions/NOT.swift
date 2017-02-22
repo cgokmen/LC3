@@ -12,6 +12,14 @@ class NOTInstruction: Instruction {
     // Update the CC
 
     override class func run(computer: LC3, instruction: UInt16) -> Void {
-        print("LOL2")
+        let destinationRegister = UInt8((instruction >> 9) & 0x7) // 3 bits
+        let sourceRegister = UInt8((instruction >> 6) & 0x7) // 3 bits
+
+        let value = ~(computer.getRegister(address: sourceRegister).getValue())
+
+        computer.getRegister(address: destinationRegister).setValue(value)
+
+        let cc = ConditionCodeEnum(data: value)
+        computer.conditionCode = cc
     }
 }

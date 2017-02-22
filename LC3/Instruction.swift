@@ -22,14 +22,14 @@ class Instruction {
         0x9: NOTInstruction.self,
         0xA: LDIInstruction.self,
         0xB: STIInstruction.self,
-        0xC: RETInstruction.self,
+        0xC: JMPRETInstruction.self,
       //0xD: RESERVED INSTRUCTION
         0xE: LEAInstruction.self,
         0xF: TRAPInstruction.self
     ]
     
     class func run(computer: LC3, instruction: UInt16) -> Void {
-        var opCode : UInt8 = UInt8(instruction >> 12)
-        opCodes[opCode].run(computer, instruction)
+        let opCode : UInt8 = UInt8(instruction >> 12)
+        opCodes[opCode]?.run(computer: computer, instruction: instruction)
     }
 }

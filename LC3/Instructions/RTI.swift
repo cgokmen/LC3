@@ -10,6 +10,6 @@ import Foundation
 
 class RTIInstruction: Instruction {
     override class func run(computer: LC3, instruction: UInt16) -> Void {
-        print("LOL2")
+        print("RTI Unimplemented!")
     }
 }

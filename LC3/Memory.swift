@@ -14,13 +14,19 @@ class Memory {
     
     init() {
         registers = [Register]()
-        // The function expo is in the Register file
-        for _ in 0 ..< expo(2, Memory.addressBits) {
+
+        for _ in 0 ..< Util.expo(2, Memory.addressBits) {
             registers.append(Register(zero: true))
         }
     }
     
-    func getValue(atAddress: UInt8) {
-        return registers[atAddress].getValue()
+    func getValue(atAddress: UInt16) -> UInt16 {
+        let index = Int(exactly: atAddress)
+        return registers[index!].getValue()
+    }
+
+    func setValue(atAddress: UInt16, value: UInt16) {
+        let index = Int(exactly: atAddress)
+        registers[index!].setValue(value)
     }
 }
