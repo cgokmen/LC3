@@ -33,6 +33,17 @@ class TRAPInstruction: Instruction {
                 // HALT
                 computer.halted = true
                 break
+            case 0x80:
+                let a = computer.getRegister(address: 0).getValue()
+                let b = computer.getRegister(address: 1).getValue()
+                
+                let div = a / b
+                let mod = a % b
+                
+                computer.getRegister(address: 0).setValue(div)
+                computer.getRegister(address: 1).setValue(mod)
+                
+                break
             default:
                 computer.programCounter.setValue(vector)
                 break
