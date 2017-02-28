@@ -8,19 +8,23 @@
 
 import Foundation
 
-var computer : LC3 = LC3()
+do {
+    var computer: LC3 = try LC3()
 
-let url = URL(fileURLWithPath: "/Users/cgokmen/Developer/Temp/sumtorial.obj")
-try ObjLoader.loadFromURL(url: url, memory: computer.memory)
+    let url = URL(fileURLWithPath: "/Users/cgokmen/Developer/Temp/sumtorial.obj")
+    try ObjLoader.loadFromURL(url: url, memory: computer.memory)
 
-let input : UInt16 = 9
-print("Finding the sumtorial of " + String(input))
+    let input: UInt16 = 3
+    print("Finding the sumtorial of " + String(input))
 
-computer.memory.setValue(atAddress: 0x3008, value: input)
+    computer.memory.setValue(atAddress: 0x3008, value: input)
 
-while (!computer.halted) {
-    computer.tick()
+    while (!computer.halted) {
+        computer.tick()
+    }
+
+    // Read 3008 == 15
+    print("Result: " + String(computer.memory.getValue(atAddress: 0x3008)))
+} catch {
+    print("That didnt work...")
 }
-
-// Read 3008 == 15
-print("Result: " + String(computer.memory.getValue(atAddress: 0x3008)))

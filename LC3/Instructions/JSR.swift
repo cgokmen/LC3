@@ -8,8 +8,8 @@
 
 import Foundation
 
-class JSRInstruction: Instruction {
-    override class func run(computer: LC3, instruction: UInt16) -> Void {
+class JumpToSubroutineHandler: InstructionHandler {
+    override func run(instruction: UInt16) -> Void {
         let pc = computer.programCounter.getValue()
         computer.getRegister(address: 7).setValue(pc)
 

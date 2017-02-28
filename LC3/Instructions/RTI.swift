@@ -8,8 +8,8 @@
 
 import Foundation
 
-class RTIInstruction: Instruction {
-    override class func run(computer: LC3, instruction: UInt16) -> Void {
+class ReturnFromInterruptHandler: InstructionHandler {
+    override func run(instruction: UInt16) -> Void {
         print("RTI Unimplemented!")
     }
 }

@@ -8,8 +8,8 @@
 
 import Foundation
 
-class STRInstruction: Instruction {
-    override class func run(computer: LC3, instruction: UInt16) -> Void {
+class StoreBaseOffsetHandler: InstructionHandler {
+    override func run(instruction: UInt16) -> Void {
         let sourceRegister = UInt8((instruction >> 9) & 0x7) // 3 bits
         let baseRegister = UInt8((instruction >> 6) & 0x7) // 3 bits
         let registerOffset = Util.signExtend(instruction & 0x3F, fromBit: 5) // 6 bits

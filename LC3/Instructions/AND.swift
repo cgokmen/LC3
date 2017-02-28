@@ -8,10 +8,10 @@
 
 import Foundation
 
-class ANDInstruction: Instruction {
+class AndHandler: InstructionHandler {
     // Update the CC
 
-    override class func run(computer: LC3, instruction: UInt16) -> Void {
+    override func run(instruction: UInt16) -> Void {
         let destinationRegister = UInt8((instruction >> 9) & 0x7) // 3 bits
         let sourceRegister1 = UInt8((instruction >> 6) & 0x7) // 3 bits
         let mode = (instruction >> 5) & 0x1 // 1 bit

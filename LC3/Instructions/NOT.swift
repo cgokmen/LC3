@@ -8,10 +8,10 @@
 
 import Foundation
 
-class NOTInstruction: Instruction {
+class NotHandler: InstructionHandler {
     // Update the CC
 
-    override class func run(computer: LC3, instruction: UInt16) -> Void {
+    override func run(instruction: UInt16) -> Void {
         let destinationRegister = UInt8((instruction >> 9) & 0x7) // 3 bits
         let sourceRegister = UInt8((instruction >> 6) & 0x7) // 3 bits
 

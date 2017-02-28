@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1A84320FC2928E7BA1B095 /* LC3Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A88112861CBE48C9998D0 /* LC3Module.swift */; };
 		2B1A86D8522B347C769D22A8 /* ObjLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A8DFB5A0A9D894CF8B75A /* ObjLoader.swift */; };
+		2B1A8C116A7033B00A6D3C8C /* ISAModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A83C170FB1407E333361B /* ISAModule.swift */; };
 		74402ACC1E529D150050F529 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74402ACB1E529D150050F529 /* main.swift */; };
-		74402AD31E529D510050F529 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74402AD21E529D510050F529 /* Instruction.swift */; };
+		74402AD31E529D510050F529 /* InstructionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74402AD21E529D510050F529 /* InstructionHandler.swift */; };
 		74402AD51E529D710050F529 /* LC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74402AD41E529D710050F529 /* LC3.swift */; };
 		74402AD71E529D800050F529 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74402AD61E529D800050F529 /* Memory.swift */; };
 		74402AD91E529D920050F529 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74402AD81E529D920050F529 /* Register.swift */; };
@@ -45,10 +47,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B1A83C170FB1407E333361B /* ISAModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISAModule.swift; sourceTree = "<group>"; };
+		2B1A88112861CBE48C9998D0 /* LC3Module.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LC3Module.swift; sourceTree = "<group>"; };
 		2B1A8DFB5A0A9D894CF8B75A /* ObjLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjLoader.swift; sourceTree = "<group>"; };
 		74402AC81E529D150050F529 /* LC3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LC3; sourceTree = BUILT_PRODUCTS_DIR; };
 		74402ACB1E529D150050F529 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		74402AD21E529D510050F529 /* Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
+		74402AD21E529D510050F529 /* InstructionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionHandler.swift; sourceTree = "<group>"; };
 		74402AD41E529D710050F529 /* LC3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LC3.swift; sourceTree = "<group>"; };
 		74402AD61E529D800050F529 /* Memory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		74402AD81E529D920050F529 /* Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
@@ -101,20 +105,21 @@
 		74402ACA1E529D150050F529 /* LC3 */ = {
 			isa = PBXGroup;
 			children = (
-				74402ADA1E529D9A0050F529 /* Instructions */,
+				74402ADA1E529D9A0050F529 /* ISA */,
 				74402ACB1E529D150050F529 /* main.swift */,
-				74402AD21E529D510050F529 /* Instruction.swift */,
+				74402AD21E529D510050F529 /* InstructionHandler.swift */,
 				74402AD41E529D710050F529 /* LC3.swift */,
 				74402AD61E529D800050F529 /* Memory.swift */,
 				74402AD81E529D920050F529 /* Register.swift */,
 				74402B011E52B1E60050F529 /* ConditionCodeEnum.swift */,
 				74402B031E53B9240050F529 /* Util.swift */,
 				2B1A8DFB5A0A9D894CF8B75A /* ObjLoader.swift */,
+				2B1A88112861CBE48C9998D0 /* LC3Module.swift */,
 			);
 			path = LC3;
 			sourceTree = "<group>";
 		};
-		74402ADA1E529D9A0050F529 /* Instructions */ = {
+		74402ADA1E529D9A0050F529 /* ISA */ = {
 			isa = PBXGroup;
 			children = (
 				74402ADB1E52A3770050F529 /* ADD.swift */,
@@ -132,8 +137,9 @@
 				74402AFD1E52A5FC0050F529 /* STI.swift */,
 				74402AFB1E52A5E20050F529 /* STR.swift */,
 				74402AFF1E52A60F0050F529 /* TRAP.swift */,
+				2B1A83C170FB1407E333361B /* ISAModule.swift */,
 			);
-			name = Instructions;
+			name = ISA;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,7 +213,7 @@
 				74402AF61E52A59B0050F529 /* RTI.swift in Sources */,
 				74402AE21E52A3B50050F529 /* JMP-RET.swift in Sources */,
 				74402AE61E52A4470050F529 /* LD.swift in Sources */,
-				74402AD31E529D510050F529 /* Instruction.swift in Sources */,
+				74402AD31E529D510050F529 /* InstructionHandler.swift in Sources */,
 				74402AF01E52A5370050F529 /* LDR.swift in Sources */,
 				74402B041E53B9240050F529 /* Util.swift in Sources */,
 				74402AE01E52A3A30050F529 /* BR.swift in Sources */,
@@ -218,6 +224,8 @@
 				74402AE41E52A4140050F529 /* JSR.swift in Sources */,
 				74402AD91E529D920050F529 /* Register.swift in Sources */,
 				2B1A86D8522B347C769D22A8 /* ObjLoader.swift in Sources */,
+				2B1A8C116A7033B00A6D3C8C /* ISAModule.swift in Sources */,
+				2B1A84320FC2928E7BA1B095 /* LC3Module.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
