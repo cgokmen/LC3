@@ -24,7 +24,7 @@ class LC3 {
     
     var conditionCode : ConditionCodeEnum
 
-    var modules : [LC3Module]
+    var modules : [LC3Module.Type]
     var instructions : [UInt8: InstructionHandler]
 
     var halted : Bool
@@ -45,14 +45,13 @@ class LC3 {
         conditionCode = .Z
         halted = false
 
-        let isaModule = ISAModule()
         do {
-            try isaModule.onEnable(computer: self)
+            try ISAModule.onEnable(computer: self)
         } catch {
             print("Could not load ISA")
             throw LC3Error.couldNotBoot
         }
-        modules.append(isaModule)
+        modules.append(ISAModule.self)
     }
     
     func tick() {
@@ -75,7 +74,7 @@ class LC3 {
         return registers[index!]
     }
 
-    func addModule(module: LC3Module) {
+    func addModule(module: LC3Module.Type) {
         do {
             try module.onEnable(computer: self)
         } catch {

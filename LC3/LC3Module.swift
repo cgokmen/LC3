@@ -9,8 +9,12 @@ enum LC3ModuleLoadError: Error {
     case couldNotEnableError
 }
 
-protocol LC3Module {
-    func onEnable(computer: LC3) throws
+class LC3Module {
+    class func onEnable(computer: LC3) throws {
+        return
+    }
 
-    func onDisable(computer: LC3)
+    class func onDisable(computer: LC3) {
+        return
+    }
 }

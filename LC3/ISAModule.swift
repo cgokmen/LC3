@@ -25,7 +25,7 @@ class ISAModule : LC3Module {
             0xF: TrapHandler.self
     ]
 
-    func onEnable(computer: LC3) throws {
+    override class func onEnable(computer: LC3) throws {
         for (code, handlerClass) in ISAModule.opCodes {
             let handler : InstructionHandler = handlerClass.init(computer: computer)
 
@@ -38,7 +38,7 @@ class ISAModule : LC3Module {
         }
     }
 
-    func onDisable(computer: LC3) {
+    override class func onDisable(computer: LC3) {
 
     }
 }
